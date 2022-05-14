@@ -1,0 +1,28 @@
+ <%- include('./templates/header.ejs') %>
+ <%- include('./templates/nav.ejs') %> 
+
+  <body><br><br><br>
+    <center>
+    <img src="<%= user.useravatar %>" class="rounded" alt="avatar">
+    </center>
+
+    <center>
+    <h1><%= user.username %>#<%= user.discriminator %></h1>
+    </center><br><br>
+    
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+      <% bots.forEach(function(bot) { %>
+    <div class="col">
+      <div class="card h-500">
+        <div class="card-body">
+        <img src="<%= bot.botavatar %>"><br>
+          <h3 class="card-title"><%= bot.botname %></h3>
+          <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <a href="/bot/<%= bot.botid %>" class="btn btn-primary active" role="button" data-bs-toggle="button" aria-pressed="true">View</a>
+        </div>
+      </div>
+    </div>
+    </div>
+    <% }); %>
+   </div>
+ <%- include('./templates/footer.ejs') %> 

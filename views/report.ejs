@@ -1,0 +1,61 @@
+
+<%- include('./templates/header.ejs') %>
+ <%- include('./templates/nav.ejs') %> 
+ <head><title>Discord Lists | Report Violater</title></head>
+<br><br>
+<center>
+<h1> <i class="fas fa-hammer" aria-hidden="true"></i> Report Violater</h1>
+<br>
+<p>Fill the form below to report a rule violater. Including the Discord Lists ToS and the Discord ToS.<p>
+<Br><Br><Br>
+<form id="form" action="/report" method="POST">
+  <div class="col-md-4">
+    <label for="a" class="form-label">What are you reporting?</label>
+    <input type="text" class="form-control" name="a" id="a" placeholder="A listed bot, a discord user or a copyright action." required>   
+    </input>
+  </div>
+<br>
+  <div class="col-md-4">
+    <label for="b" class="form-label">What did this user/bot/person do to violate the rules?</label>
+    <input type="text" class="form-control" name="b" id="b" placeholder="This bot violated a rule for being 100% NSFW with no NSFW locked channels." required>
+    </input>
+  </div>
+<br>
+  <div class="col-md-4">
+    <label for="c" class="form-label">Anything else you would like to tell us about this report?</label>
+    <input type="text" class="form-control" name="c" id="c" placeholder="It is infecting 13 year olds with 21 year old information." >
+    </input>
+  </div>
+  <br>
+    <div class="col-md-4">
+      <label for="c" class="form-label">Proof of violation</label>
+      <input type="text" class="form-control" name="d" id="d" placeholder="MUST be a URL to an image.">
+      </input>
+  </div>
+  <br>
+<br>
+<br>
+  <div class="col-md-4">
+  <button class="button-main" type="submit" id="submit-btn">Submit Report</submit>
+  </div>
+</form>
+<script>
+function showSnackbar() {
+  const snackbar = document.querySelector(".snackbar");
+  snackbar.classList.add("show");
+  setTimeout(() => snackbar.classList.remove("show"), 5000);
+}
+window.onload = ()=>{
+setTimeout(function(){
+ 	showSnackbar()
+}, 1000);
+}
+</script>
+
+<% if(success) {%>
+<div class="snackbar">
+  <div>Successfully submitted report! Thanks for making Discord Lists a better community for us and others.</div>
+</div>
+<% } %>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+ <%- include('./templates/footer.ejs') %> 

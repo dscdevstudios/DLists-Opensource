@@ -1,0 +1,301 @@
+ <%- include('./templates/header.ejs') %>
+ <%- include('./templates/nav.ejs') %> 
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <%- include("templates/header") %>
+
+    <title>Discord Lists | Staff Panel</title>
+  </head>
+  <body>
+  <br><br />
+      <center><h1>Staff Panel</h1></center>
+      
+      <div class="center-flex"we>
+      <p>Accept/Deny bots here!</p>
+      <%unverifiedBot.forEach%>
+      </div>
+<div>
+<br>
+  <%if(unverifiedBot.length === 0){ %>
+      <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+        <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+          <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+        </symbol>
+        <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+          <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+        </symbol>
+        <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+          <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+        </symbol>
+      </svg>
+      <div class="alert alert-danger d-flex align-items-center" role="alert">
+        <svg class="bi flex-shrink-0 me-2" width="20" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+        <div>
+            Unapproved bots waiting = 0        
+        </div>
+      </div>
+  <% } %>
+  <% unverifiedBot.forEach(function(bot) { %>
+
+    <% if(bot.state === 'unverified'){ %>
+      <div class="secondary-bg">
+      <img src="<%=bot.botavatar%>" style="display:block;margin:auto;">
+      <br>
+      <p><%=bot.shortdes%></p>
+       <span id="botID" style="display:none !important"><%=bot.botid%></span>
+       <span id="botname" style="display:none !important"><%=bot.botname%></span>
+        <div class="center-flex">
+        <button class="button-main" onclick="window.location.href = '/bot/<%=bot.botid%>'">View</button>
+         <button class="button-main" onclick="acceptBot()" style="background:#1FD78D">Accept</button><Br><Br>
+         <button class="button-main" onclick="denyBot()" style="background: #F62451
+         ">Deny</button> 
+         </div>
+         <br>
+      </div>       
+    <% }%>
+  <% }); %>
+</div>
+<br>
+<br>
+<div class="col-3 mx-auto">
+          <div class="card border-primary border-left-sm">
+            <div class="card-body">
+              <div class="media align-items-center">
+              <div class="media-body text-left">
+                <h4 class="text-primary mb-0"><span id="counter">0</span></h4>
+                <span>Online Visitors</span>
+              </div>
+              <div class="align-self-center w-circle-icon rounded-circle bg-primary">
+                <i class="fal fa-user text-white"></i></div>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div><!--End Row-->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+      <script>
+        setInterval(() => {
+            $.ajax({
+            type: "GET",
+            url: "/api/get-online",
+            dataType: "json",
+            success: function (response) {
+              console.log(response)
+              let count = response.count;
+              $("#counter").html(count);
+            }
+          });
+        }, 100);
+      </script>
+
+
+
+
+
+
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+const ID= document.getElementById("botID").innerHTML
+const botname = document.getElementById("botname").innerHTML
+
+function acceptBot(){
+Swal.fire(
+  'Accept Bot and add it to the list?',
+  'Are you sure?',
+  'question'
+).then((result) => {
+  if (result.isConfirmed) {
+  fetch("/staffpanel/accept/" + ID, {
+})
+    Swal.fire('Alright then!', 'Bot Accepted.', 'success')
+    window.location.reload()
+  } 
+})
+}
+function denyBot(){
+Swal.fire(
+  'Deny Bot?',
+  'Are you sure?',
+  'question'
+).then((result) => {
+  if (result.isConfirmed) {
+  fetch("/staffpanel/delete/" + ID, {
+  method: "POST",
+})
+    Swal.fire('Bot Deleted.', '', 'success')
+        window.location.reload()
+  } 
+})
+
+}
+
+</script>
+
+
+</div>
+
+
+
+
+
+
+</center>
+<div style="height:100vh"></div>
+<%- include('./templates/footer.ejs') %>
+<!---
+<form action="https://a-botlist-without-a-name.crazybotboy.repl.co/maintenance?access_key=pw1234" method="post">
+  <label for="mode">First name:</label>
+  <input type="text" id="mode" name="mode"><br><br>
+ 
+  <input type="submit" value="Submit">
+</form>
+-->
+
+
+
+<style>
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #232323;
+  color:orange;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid orange;
+  width: 70%;
+}
+.black{
+font-color:black;}
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+.p{
+font-color:#0000FF;
+}
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+.highlight-white{
+background-color:#fc6b29;
+border-radius: 10px;
+padding: 3pt;
+width: 50%;
+}
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #AA4A44;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+</style>
+
+<script> // Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
+</script>

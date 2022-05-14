@@ -1,0 +1,68 @@
+
+<%- include('./templates/header.ejs') %>
+ <%- include('./templates/nav.ejs') %> 
+ <head><title>Discord Lists | Partnership Application</title></head>
+<br><br>
+<center>
+<h1> <i class="fas fa-star" aria-hidden="true"></i> Partnership Apps: </h1>
+<br>
+<p>Fill out the form below to become an official discord lists partner.</p>
+<Br><Br><Br>
+<form id="form" action="/partnerapps" method="POST">
+  <div class="col-md-4">
+    <label for="a" class="form-label">Are you partnering a bot, website, or discord server?</label>
+    <input type="text" class="form-control" name="a0" id="a0" placeholder="" required>   
+    </input>
+  </div>
+<br>
+<form id="form" action="/partnerapps" method="POST">
+  <div class="col-md-4">
+    <label for="a" class="form-label">What is the name of your discord server/website you want to partner with. Add the URL to join/view too.</label>
+    <input type="text" class="form-control" name="a" id="a" placeholder="" required>   
+    </input>
+  </div>
+<br>
+  <div class="col-md-4">
+    <label for="b" class="form-label">Why would you like to be a partner for discord lists?</label>
+    <input type="text" class="form-control" name="b" id="b" placeholder="" required>
+    </input>
+  </div>
+<br>
+  <div class="col-md-4">
+    <label for="c" class="form-label">What is the pourpose off applying for partnership?</label>
+    <input type="text" class="form-control" name="c" id="c" placeholder="" required>
+    </input>
+  </div>
+<br>
+  <div class="col-md-4">
+    <label for="d" class="form-label">Why should we select you over other partnership applicants?</label>
+    <input type="text" class="form-control" name="d" id="d" placeholder="" required>
+    </input>
+  </div>
+<br>
+<br>
+  <div class="col-md-4">
+  <button class="button-main" type="submit" id="submit-btn">Submit</submit>
+  </div>
+</form>
+<script>
+function showSnackbar() {
+  const snackbar = document.querySelector(".snackbar");
+  snackbar.classList.add("show");
+  setTimeout(() => snackbar.classList.remove("show"), 5000);
+}
+window.onload = ()=>{
+setTimeout(function(){
+ 	showSnackbar()
+}, 1000);
+}
+</script>
+
+<% if(success) {%>
+<div class="snackbar">
+  <div>Successfully submitted partnership application!</div>
+</div>
+<% } %>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+ <%- include('./templates/footer.ejs') %> 
+ 
