@@ -8,7 +8,7 @@ and lastly
 
 ## Setup:
 **To setup follow the directions below**
-- Open up your terminal/favorite code editor and clone the repo, `git clone https://github.com/Discord-Lists/botlist` 
+- Open up your terminal/favorite code editor and clone the repo, `git clone https://github.com/DiscordLists/Opensource` 
 - Change the values in `.sample.env`
 - After setting values in `sample.env` rename it to just .env
 - Run the code! (`npm start`)
