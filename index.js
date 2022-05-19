@@ -21,7 +21,7 @@ const websiteURL = "https://discordlists100.xyz";
 const Database = require("@replit/database")
 const jquery = require('jquery')
 const rdb = new Database()
-const PORT = process.env.PORT || 3000 //i changed the port to 3000 since 5000 was causing errors
+const PORT = process.env.PORT || 3235 //i changed the port to 3000 since 5000 was causing errors
 //ok
 /*
 * @param1 {string}: Required, message text in String format.
