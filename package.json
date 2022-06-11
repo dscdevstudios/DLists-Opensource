@@ -1,0 +1,37 @@
+{
+  "name": "botlist",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@replit/database": "^2.0.1",
+    "body-parser": "^1.19.0",
+    "discord.js": "^12.5.3",
+    "dotenv": "^9.0.2",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "express-password-protect": "^1.0.2",
+    "express-session": "^1.17.2",
+    "html-to-text": "^7.1.1",
+    "jquery": "^3.6.0",
+    "maintenance": "0.0.2",
+    "mongoose": "^5.13.9",
+    "node-fetch": "^2.6.5",
+    "nodejs-server-maintenance": "^2.0.6",
+    "nodemon": "^2.0.13",
+    "passport": "^0.4.1",
+    "passport-discord": "^0.1.4",
+    "passport-oauth2": "^1.6.1",
+    "pug": "^3.0.2",
+    "showdown": "^1.9.1",
+    "socket.io": "^4.2.0",
+    "sweetalert2": "^11.1.7",
+    "textversionjs": "^1.1.3"
+  }
+}

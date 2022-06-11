@@ -1,0 +1,29 @@
+ <%- include('./templates/header.ejs') %>
+ <%- include('./templates/nav.ejs') %> 
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+        <%- include("templates/header") %>
+
+
+    <title>Discord Lists | Error</title>
+  </head>
+  <body>
+  <Br><br>
+      <h1>Error</h1>
+      <br><br>
+      <div class="center-flex">
+      <% if(code) {%> <h1 style="color: var(--main-bg-color)"><%=code%></h1><% } %>
+      </div>
+      <div class="center-flex">
+      <% if(message) {%> <h4><%=message%></h4><% } %> </div>
+      <br><br><Br><br>
+      <p>Found a bug? What's to ponder, <a href="/bug" style="text-decoration:underline;">report</a> it!  </p>
+ <%- include('./templates/footer.ejs') %> 

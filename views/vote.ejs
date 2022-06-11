@@ -1,0 +1,36 @@
+ <%- include('./templates/header.ejs') %>
+ <%- include('./templates/nav.ejs') %> 
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+    <title>Discord Lists | Voting <%= botid.botname %></title>
+  </head>
+  <body><br>
+      <center>
+      <img src="<%= botid.botavatar %>" class="rounded" alt="<%=botid.botname%>'s avatar"><Br>
+      <h3><font color="white">Voting for <%= botid.botname %>.<br> You can vote once per every 12 hours.</font></h3></center><br>
+      <center></center><br>
+      <center>
+      
+      <% if( hasUserAlreadyVoted12hr){%>
+
+        <button class="button-main disabled">🎉 Voted!</button>
+
+      <% }else {%>
+            <form class="needs-validation" method="POST" action="/bot/vote/<%= botid.botid %>">
+        <div class="col-12">
+          <button class="button-main" type="submit">Vote</button>
+        </div><br>
+      </form>
+      <% } %>
+      </center>
+  </body>
+</html>

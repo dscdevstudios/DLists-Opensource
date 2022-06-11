@@ -1,0 +1,153 @@
+<%- include('./templates/header.ejs') %>
+<%- include('./templates/nav.ejs') %> 
+ <head><title>Discord Lists</title>
+
+ </head>
+<br><Br>
+<img src="/images/Logo.png" class="top-img"/>
+<br>
+         
+          
+                   
+<center>
+        <div class="alert fade alert-simple alert-warning alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show" role="alert" data-brk-library="component__alert" style="background-color:#000000; border: 0; color:orange; font-weight: 900pt; width:50%;">
+          <strong class="font__weight-bold">B:<br></strong> RUH</div>
+          <br>
+
+          
+</center>
+
+  <form id="main-form">
+  <h1>Search Bots</h1>
+    <input class="search" type="text"  placeholder="eg. Moderation">
+  </form>
+
+<br><br>
+  
+<!--
+    <h2 class="heading"><i class="fas fa-check-circle"></i> Premium Advertisements</h2><br><br>
+      <div class="container">
+      <div class="card">
+        <div class="imgBx">
+        </div>
+        <div class="contentBx">
+          <h2>Premium Ad</h2>
+          <p>test</p>
+          <a href="/bot/test" class="viewbot"><button class="button-main"><i class="fas fa-eye"></i> View </button></a>
+          <a href="test" class="invitebot"><button class="button-main"><i class="fas fa-arrow-right"></i> Invite </button></a>
+        </div>
+      </div>
+    </div>
+              </div>
+              -->
+
+    <h2 class="heading"><i class="fas fa-check-circle"></i> Certified Bots</h2><br><br>
+     <% if(certified_bots.length === 0){ %>
+        <h3 class="text-center">No Certified Bots found. Please visit us later.</h3>
+      <% } else{ %>
+      <div class="center-flex">
+      <% certified_bots.forEach(function(bot) { %>
+    <div class="container">
+      <div class="card">
+        <div class="imgBx">
+          <img src="<%= bot.botavatar %>">
+        </div>
+        <div class="contentBx">
+          <h2><%= bot.botname %><img src="https://cdn.glitch.com/1be813f1-4233-4b7a-bf44-8a562481d51f%2FCertified.png?v=1625404757585" title="Certified Bot" width="38" height="38"></h2>
+          <p><%=bot.shortdes%></p>
+          <a href="/bot/<%= bot.botid %>" class="viewbot"><button class="button-main"><i class="fas fa-eye"></i> View </button></a>
+          
+        </div>
+      </div>
+    </div>
+              <% }); %>
+              </div>
+     <% } %>
+<center>
+
+</center>
+<br>
+<br><br><br><br><br>
+    <h2 class="heading"><i class="fas fa-arrow-up"></i> Top Voted Bots</h2><br><br>
+     <% if(verified_bots.length === 0){ %>
+        <h3 class="text-center">No Bots found. Please visit us later.</h3>
+      <% } else{ %>
+      <div class="center-flex">
+      <% verified_bots.forEach(function(bot) { %>
+    <div class="container">
+      <div class="card">
+        <div class="imgBx">
+          <img src="<%= bot.botavatar %>">
+        </div>
+        <div class="contentBx">
+          <h2><%= bot.botname %><% if(bot.certification === 'certified'){ %>
+          <img src="https://cdn.glitch.com/1be813f1-4233-4b7a-bf44-8a562481d51f%2FCertified.png?v=1625404757585" title="Certified Bot" height="38" width="38">
+        <% } %></h2>
+          <p><%=bot.shortdes%></p>
+          <a href="/bot/<%= bot.botid %>" class="viewbot"><button class="button-main"><i class="fas fa-eye"></i> View </button></a>
+          
+        </div>
+      </div>
+    </div>
+              <% }); %>
+              </div>
+     <% } %>
+     <center>
+     
+</center>
+<br><br><br><br><br>
+    <h2 class="heading"><i class="fas fa-random"></i> Random Bots</h2><br><br>
+     <% if(random_bot.length === 0){ %>
+        <h3 class="text-center">No Bots found. Please visit us later.</h3>
+      <% } else{ %>
+      <div class="center-flex">
+      <% random_bot.forEach(function(random) { %>
+    <div class="container">
+      <div class="card">
+        <div class="imgBx">
+          <img src="<%= random.botavatar %>">
+        </div>
+        <div class="contentBx">
+          <h2><%= random.botname %><% if(random.certification === 'certified'){ %>
+          <img src="https://cdn.glitch.com/1be813f1-4233-4b7a-bf44-8a562481d51f%2FCertified.png?v=1625404757585" title="Certified Bot" height="38" width="38">
+        <% } %></h2>
+          <p> <%=random.shortdes%> </p>
+          <a href="/bot/<%= random.botid %>" class="viewbot"><button class="button-main"><i class="fas fa-eye"></i> View </button></a>
+          
+        </div>
+       </div>
+      </div>
+      <% }); %>
+      </div>
+     <% } %>
+     <center>
+     
+</center>
+
+<br><br><br><br><br>
+      <!--search script -->
+      <script>
+const searchBar = document.getElementsByClassName("search")[0]
+const form = document.getElementById("main-form")
+
+form.addEventListener("submit",e=>{
+e.preventDefault()
+search()
+} )
+
+
+function search(){
+  const value = searchBar.value
+  window.location.href = "/s?search="+value
+}
+</script>
+ <%- include('./templates/footer.ejs') %> 
+<!--
+
+ dont let tech commander make me angry
+
+ :root {
+  --main-bg-color:#fc6b29;
+  --secondary: #11171f;
+}
+-->
